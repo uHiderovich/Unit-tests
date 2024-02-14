@@ -5,14 +5,16 @@ import java.util.List;
 /**
  * Класс для работы со списками с числами.
  */
-public class StatisticCalculator {
+public final class StatisticCalculator {
+    private StatisticCalculator() { }
     /**
      * Считает среднее значение списка.
      * @param list список для рассчета
      * @return среднее значение
      */
-    public static int averageList(final List<Integer> list) {
-        int result = 0;
+    public static double averageList(final List<Integer> list) {
+        double result = 0;
+
         for (int item : list) {
             result += item;
         }
@@ -30,16 +32,15 @@ public class StatisticCalculator {
         final List<Integer> listA,
         final List<Integer> listB
     ) {
-
-        int averageA = averageList(listA);
-        int averageB = averageList(listB);
+        double averageA = averageList(listA);
+        double averageB = averageList(listB);
 
         if (averageA > averageB) {
-            System.out.println("Первый список имеет большее среднее значение");
+            System.out.print("Первый список имеет большее среднее значение");
         } else if (averageA < averageB) {
-            System.out.println("Второй список имеет большее среднее значение");
+            System.out.print("Второй список имеет большее среднее значение");
         } else  {
-            System.out.println("Средние значения равны");
+            System.out.print("Средние значения равны");
         }
     }
 }

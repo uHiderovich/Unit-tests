@@ -1,7 +1,11 @@
 package org.app;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
+public final class Main {
+    private Main() { }
+
+    /**
+     * Main method.
+     * @param args args
+     */
+    public static void main(final String[] args) { }
 }

@@ -43,6 +43,12 @@
             <version>${junit.platform.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -51,16 +57,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${checkstyle-maven-plugin.version}</version>
-                <configuration>
-                    <consoleOutput>true</consoleOutput>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${checkstyle.version}</version>
-                    </dependency>
-                </dependencies>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -71,46 +67,33 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.9.1</version>
             </plugin>
-        </plugins>
-    </build>
 
-    <reporting>
-        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle-maven-plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>checkstyle</report>
-                        </reports>
-                        <configuration>
-                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                        </configuration>
-                    </reportSet>
-                </reportSets>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M6</version>
             </plugin>
 
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
+                <version>0.8.7</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-                    <!-- attached to Maven test phase -->
                     <execution>
                         <id>report</id>
-                        <phase>test</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
@@ -118,6 +101,5 @@
                 </executions>
             </plugin>
         </plugins>
-    </reporting>
-
+    </build>
 </project>
