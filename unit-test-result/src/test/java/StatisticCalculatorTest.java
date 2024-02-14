@@ -55,10 +55,29 @@ public class StatisticCalculatorTest {
     }
 
     @Test
+    @DisplayName("Сравнение средних значений двух списков: есть отрицательные значения, среднее значение первого списка больше")
+    void compareAverageValues4() {
+        List<Integer> listA = List.of(1, 2, 3);
+        List<Integer> listB = List.of(1, 2, -3);
+
+        StatisticCalculator.compareAverageValues(listA, listB);
+        assertEquals("Первый список имеет большее среднее значение", outContent.toString());
+    }
+
+    @Test
     @DisplayName("Вычисление среднего значения списка")
-    void calculateAverageValue() {
+    void calculateAverageValue1() {
         List<Integer> list = List.of(1, 2, 3, 4, 5);
         double expected = 3.0;
+        double actual = StatisticCalculator.averageList(list);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Вычисление среднего значения списка: список пуст")
+    void calculateAverageValue2() {
+        List<Integer> list = List.of();
+        double expected = Float.NaN;
         double actual = StatisticCalculator.averageList(list);
         assertEquals(expected, actual);
     }
